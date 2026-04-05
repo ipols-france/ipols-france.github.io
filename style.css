@@ -1,0 +1,787 @@
+/* =============================================================
+   iPoLS France — Shared Stylesheet
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ----- Reset & base ----- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --accent:       #1a3a5c;
+  --accent-light: #2b5c94;
+  --accent-pale:  #e8f0f8;
+  --text:         #222;
+  --muted:        #555;
+  --border:       #d8e2ec;
+  --bg:           #fff;
+  --card-bg:      #f7fafd;
+  --radius:       6px;
+  --max-width:    900px;
+  --nav-height:   60px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+}
+
+a {
+  color: var(--accent-light);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  color: var(--accent);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ----- Layout wrapper ----- */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* =============================================================
+   HEADER / NAV
+   ============================================================= */
+header {
+  background: var(--accent);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,.18);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.site-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: #fff;
+  white-space: nowrap;
+}
+.site-name:hover {
+  text-decoration: none;
+  opacity: .9;
+}
+
+nav {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+nav a {
+  color: rgba(255,255,255,.88);
+  font-size: .9rem;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  transition: background .15s, color .15s;
+}
+nav a:hover,
+nav a.active {
+  background: rgba(255,255,255,.18);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* hamburger — hidden by default */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform .2s;
+}
+
+/* =============================================================
+   PAGE HERO
+   ============================================================= */
+.page-hero {
+  background: linear-gradient(135deg, #0d1f33 0%, var(--accent) 52%, #1c4776 100%);
+  padding: 60px 24px 52px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* SVG network decoration — sits behind text via ::after pseudo-element.
+   Swap the background-image URL to use a different illustration. */
+.page-hero::after {
+  content: '';
+  position: absolute;
+  right: -4%;
+  top: -25%;
+  width: 54%;
+  height: 150%;
+  background-image: url('assets/network-deco.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  opacity: .09;
+  pointer-events: none;
+}
+
+/* wraps the visible text above the decoration layer */
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.page-hero .subtitle {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.72);
+  font-weight: 400;
+}
+
+/* ── Home page: taller hero, more visible decoration ── */
+.page-hero.home-hero {
+  padding: 96px 24px 84px;
+}
+
+.page-hero.home-hero::after {
+  width: 60%;
+  height: 165%;
+  opacity: .14;
+  right: -3%;
+  top: -32%;
+}
+
+.page-hero.home-hero h1 {
+  font-size: 2.6rem;
+  margin-bottom: 14px;
+}
+
+/* small pill badge above the main title */
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.22);
+  color: rgba(255,255,255,.85);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 22px;
+}
+
+/* ── Photo hero variant (optional — add class="page-hero photo-hero")
+   Set --hero-img to a URL when you have a real photo:
+   style="--hero-img: url('assets/meeting-2026.jpg')"
+   ────────────────────────────────────────────────── */
+.page-hero.photo-hero {
+  background-image: var(--hero-img, none);
+  background-size: cover;
+  background-position: center;
+}
+.page-hero.photo-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 22, 38, .62);
+  z-index: 0;
+}
+
+/* =============================================================
+   MAIN CONTENT
+   ============================================================= */
+main {
+  padding: 56px 0 80px;
+}
+
+section {
+  margin-bottom: 56px;
+}
+section:last-child {
+  margin-bottom: 0;
+}
+
+h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent-pale);
+}
+
+h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+p {
+  margin-bottom: 14px;
+  color: var(--text);
+}
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* =============================================================
+   HOME — WELCOME SECTION
+   ============================================================= */
+.welcome-text {
+  max-width: 720px;
+}
+
+/* =============================================================
+   HOME — NETWORK CARDS
+   ============================================================= */
+.network-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.network-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 28px 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent-light);
+  border-radius: var(--radius);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: .95rem;
+  box-shadow: 0 1px 4px rgba(26,58,92,.06);
+  transition: border-color .15s, box-shadow .2s, background .15s, transform .15s;
+  line-height: 1.4;
+}
+
+.network-card:hover {
+  text-decoration: none;
+  background: var(--accent-pale);
+  border-color: var(--accent-light);
+  border-top-color: var(--accent);
+  box-shadow: 0 6px 20px rgba(26,58,92,.14);
+  transform: translateY(-2px);
+}
+
+.network-card .card-arrow {
+  display: block;
+  margin-top: 10px;
+  font-size: .8rem;
+  font-weight: 400;
+  color: var(--accent-light);
+}
+
+/* =============================================================
+   AFFILIATES — CITY GROUPS
+   ============================================================= */
+.city-group {
+  margin-bottom: 36px;
+}
+
+.city-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.affiliate-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .92rem;
+}
+
+.affiliate-table th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--accent);
+  padding: 8px 12px;
+  background: var(--accent-pale);
+  border-bottom: 2px solid var(--border);
+}
+
+.affiliate-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.affiliate-table tr:last-child td {
+  border-bottom: none;
+}
+
+.affiliate-table tr:hover td {
+  background: var(--card-bg);
+}
+
+.coordinator-badge {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 600;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 20px;
+  padding: 1px 8px;
+  margin-left: 6px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.affiliates-note {
+  margin-top: 32px;
+  padding: 14px 18px;
+  background: var(--card-bg);
+  border-left: 3px solid var(--accent-light);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+/* =============================================================
+   EVENTS
+   ============================================================= */
+.event-placeholder {
+  padding: 28px 24px;
+  background: var(--card-bg);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-style: italic;
+}
+
+.event-note {
+  margin-top: 12px;
+  font-size: .88rem;
+  color: var(--muted);
+}
+
+.event-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.event-item {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 16px 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-light);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 4px rgba(26,58,92,.05);
+  transition: box-shadow .2s, border-left-color .15s;
+}
+.event-item:hover {
+  box-shadow: 0 4px 14px rgba(26,58,92,.1);
+  border-left-color: var(--accent);
+}
+
+.event-year {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+  padding-top: 2px;
+}
+
+.event-title {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.event-meta {
+  font-size: .88rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.event-deadline {
+  font-size: .85rem;
+  font-weight: 600;
+  color: #c0392b;
+  margin-top: 5px;
+}
+
+.btn-muted {
+  background: var(--border);
+  color: var(--muted);
+  cursor: default;
+  box-shadow: none;
+}
+.btn-muted:hover {
+  background: var(--border);
+  color: var(--muted);
+  box-shadow: none;
+  text-decoration: none;
+}
+
+/* =============================================================
+   PUBLICATIONS (community.html)
+   ============================================================= */
+.pub-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.pub-item {
+  padding: 16px 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: .92rem;
+  line-height: 1.6;
+}
+
+.pub-authors {
+  color: var(--muted);
+}
+
+.pub-title {
+  font-weight: 600;
+  color: var(--text);
+  margin: 2px 0;
+}
+
+.pub-journal {
+  color: var(--muted);
+}
+
+.pub-note {
+  margin-top: 6px;
+  font-size: .82rem;
+  color: var(--accent-light);
+  font-style: italic;
+}
+
+/* =============================================================
+   FUNDING
+   ============================================================= */
+.funding-scheme {
+  padding: 32px 28px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 32px;
+}
+
+.funding-scheme h2 {
+  border-bottom-color: var(--border);
+  font-size: 1.2rem;
+}
+
+.funding-scheme .scheme-intro {
+  color: var(--muted);
+  font-size: .93rem;
+  margin-bottom: 20px;
+}
+
+.fields-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 24px;
+  font-size: .88rem;
+}
+
+.fields-list li::before {
+  content: "•";
+  color: var(--accent-light);
+  margin-right: 8px;
+}
+
+.fields-group {
+  margin-bottom: 8px;
+}
+
+.fields-group-title {
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.form-placeholder {
+  padding: 16px 18px;
+  background: #fffbe6;
+  border: 1px dashed #d4a800;
+  border-radius: var(--radius);
+  font-size: .88rem;
+  color: #7a5c00;
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 22px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: .9rem;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: background .15s, box-shadow .15s;
+}
+.btn:hover {
+  background: var(--accent-light);
+  text-decoration: none;
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(26,58,92,.2);
+}
+
+.funding-bottom-note {
+  margin-top: 12px;
+  padding: 14px 18px;
+  background: var(--card-bg);
+  border-left: 3px solid var(--border);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: .88rem;
+  color: var(--muted);
+}
+
+/* =============================================================
+   CONTACT
+   ============================================================= */
+.contact-card {
+  display: inline-block;
+  padding: 28px 32px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  min-width: 320px;
+}
+
+.contact-card .contact-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.contact-card .contact-inst {
+  font-size: .9rem;
+  color: var(--muted);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.contact-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: .92rem;
+}
+
+.contact-label {
+  font-weight: 600;
+  color: var(--accent);
+  min-width: 52px;
+}
+
+.contact-note {
+  margin-top: 32px;
+  font-size: .9rem;
+  color: var(--muted);
+  max-width: 560px;
+}
+
+/* =============================================================
+   FOOTER
+   ============================================================= */
+footer {
+  background: var(--accent);
+  color: rgba(255,255,255,.8);
+  padding: 36px 24px;
+  font-size: .85rem;
+}
+
+.footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-links a {
+  color: rgba(255,255,255,.75);
+  transition: color .15s;
+}
+.footer-links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer-sep {
+  color: rgba(255,255,255,.35);
+  margin: 0 4px;
+}
+
+.footer-copy {
+  color: rgba(255,255,255,.5);
+  font-size: .8rem;
+}
+
+/* =============================================================
+   RESPONSIVE
+   ============================================================= */
+@media (max-width: 700px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  nav {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background: var(--accent);
+    padding: 8px 16px 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.2);
+    gap: 2px;
+  }
+
+  nav.open {
+    display: flex;
+  }
+
+  nav a {
+    padding: 10px 14px;
+    font-size: .95rem;
+  }
+
+  .network-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .event-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .funding-scheme {
+    padding: 22px 18px;
+  }
+
+  .contact-card {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .page-hero h1 {
+    font-size: 1.55rem;
+  }
+
+  .page-hero.home-hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .page-hero::after {
+    width: 80%;
+    right: -10%;
+    opacity: .06;
+  }
+
+  .network-card {
+    transform: none !important;
+  }
+
+  .affiliate-table {
+    font-size: .82rem;
+  }
+
+  .affiliate-table th,
+  .affiliate-table td {
+    padding: 8px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-hero {
+    padding: 40px 16px 34px;
+  }
+
+  .page-hero.home-hero {
+    padding: 60px 16px 50px;
+  }
+
+  main {
+    padding: 36px 0 60px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+}

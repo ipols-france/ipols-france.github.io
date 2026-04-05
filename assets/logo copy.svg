@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 44" width="180" height="44" role="img" aria-label="iPoLS France">
+  <!-- iPoLS France wordmark logo — placeholder, replace with final artwork when ready -->
+
+  <!-- "iPoLS" in bold -->
+  <text
+    x="0" y="30"
+    font-family="Inter, system-ui, sans-serif"
+    font-size="28"
+    font-weight="700"
+    fill="#1a3a5c"
+    letter-spacing="-0.5"
+  >iPoLS</text>
+
+  <!-- "France" in lighter weight, vertically centred with "iPoLS" -->
+  <text
+    x="94" y="30"
+    font-family="Inter, system-ui, sans-serif"
+    font-size="18"
+    font-weight="400"
+    fill="#2b5c94"
+    letter-spacing="0.5"
+  >France</text>
+
+  <!-- thin divider between the two words -->
+  <line x1="90" y1="8" x2="90" y2="36" stroke="#d8e2ec" stroke-width="1.5"/>
+</svg>
