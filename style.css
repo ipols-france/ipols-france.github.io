@@ -213,39 +213,32 @@ nav a.active {
 }
 
 /* ── Photo hero variant (add class="page-hero photo-hero")
-   Place <img class="hero-photo" src="..." alt=""> as the first child
-   of the .page-hero div. The gradient is kept as a fallback.
+   Set the photo via an inline style attribute on the element:
+     style="background-image: url('assets/photo.jpg');
+            background-size: cover; background-position: center;"
+   The ::before overlay and dark fallback colour are applied automatically.
    ────────────────────────────────────────────────── */
 
-/* suppress SVG network decoration on photo heroes — the photo provides the visual */
+/* dark fallback colour if the image fails to load */
+.page-hero.photo-hero {
+  background-color: #0d1f33;
+}
+
+/* suppress SVG network decoration — the photo provides the visual interest */
 .page-hero.photo-hero::after {
   display: none;
 }
 
-/* the photo itself: absolutely fills the hero, cropped to cover */
-.hero-photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  z-index: 0;
-}
-
-/* semi-transparent dark overlay to keep text readable */
+/* semi-transparent dark overlay so white text stays readable */
 .page-hero.photo-hero::before {
   content: '';
   position: absolute;
   inset: 0;
   background: rgba(10, 22, 38, .60);
-  z-index: 1;
+  z-index: 0;
 }
 
-/* raise text content above the overlay */
-.page-hero.photo-hero .hero-content {
-  z-index: 2;
-}
+/* hero-content already has z-index:1 from the base rule — stays above the overlay */
 
 /* =============================================================
    MAIN CONTENT
