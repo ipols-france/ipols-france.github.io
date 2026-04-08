@@ -469,6 +469,189 @@ p:last-child {
 }
 
 /* =============================================================
+   MEETING PAGES (meeting-*.html)
+   ============================================================= */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent-light);
+  font-size: .88rem;
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+.back-link:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+.back-link::before {
+  content: '←';
+}
+
+.meeting-facts {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.meeting-fact {
+  flex: 1;
+  min-width: 120px;
+  padding: 18px 20px;
+  background: var(--card-bg);
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.meeting-fact:last-child {
+  border-right: none;
+}
+
+.fact-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.1;
+}
+
+.fact-label {
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.photo-grid.three-col {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.photo-grid img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  display: block;
+}
+
+.photo-caption {
+  font-size: .8rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 36px;
+  text-align: center;
+}
+
+.people-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 8px;
+}
+
+.people-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.people-list li {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  font-size: .9rem;
+}
+.people-list li:last-child {
+  border-bottom: none;
+}
+
+.person-name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.person-affil {
+  color: var(--muted);
+  font-size: .83rem;
+  margin-top: 1px;
+}
+
+.download-box {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  background: var(--accent-pale);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  flex-wrap: wrap;
+}
+
+.download-box p {
+  margin: 0;
+  font-size: .92rem;
+  color: var(--muted);
+  flex: 1;
+  min-width: 160px;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: .9rem;
+  border-radius: var(--radius);
+  white-space: nowrap;
+  transition: background .15s, box-shadow .15s;
+}
+.download-btn:hover {
+  background: var(--accent-light);
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgba(26,58,92,.2);
+}
+
+@media (max-width: 650px) {
+  .photo-grid,
+  .photo-grid.three-col {
+    grid-template-columns: 1fr;
+  }
+  .photo-grid img {
+    height: 200px;
+  }
+  .people-columns {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .meeting-facts {
+    flex-direction: column;
+  }
+  .meeting-fact {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 14px 20px;
+  }
+  .meeting-fact:last-child {
+    border-bottom: none;
+  }
+}
+
+/* =============================================================
    PUBLICATIONS (community.html)
    ============================================================= */
 .pub-list {
